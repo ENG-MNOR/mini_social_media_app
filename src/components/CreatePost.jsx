@@ -1,14 +1,19 @@
-import { useState,useRef } from "react";
+import { useState,useRef, useContext } from "react";
+import { postContext } from "../App";
+import postReducer from "../postReducer";
 
-const CreatePost =({posts,setPosts})=>{
+const CreatePost =({posts,setPosts,user})=>{
     const [content,setContent]= useState("")
     const [image,setimage]= useState(null)
     const imageRef=useRef();
     const contentRef=useRef();
+    const{dispatch}= useContext(postContext)
+   
     const handleSubmit=(event)=>{
         event.preventDefault();
-        const newPost={content,image}
-        setPosts([newPost,...posts])
+        const newPost={content,image,user,id:Date.now()}
+        dispatch({type:"ADD_NEW_POST",payload:{post:newPost}})
+        // setPosts([newPost,...posts])
         setContent("")
         imageRef.current.value="";
         setimage(null);

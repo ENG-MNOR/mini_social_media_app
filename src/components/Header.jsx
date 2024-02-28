@@ -1,6 +1,9 @@
 import React from 'react'
+import { useContext } from 'react';
+import { userContext } from '../App';
 // import { useNavigate } from 'react-router-dom';
-const Header=({user,setUser})=>{
+const Header=({setUser})=>{
+    const user=useContext(userContext);
     // const navigate=useNavigate();
     // const logHandler=()=>{   
     //     console.log("clickeds")
